@@ -1,25 +1,29 @@
+// 📌 src/app/authentication/auth.routes.ts
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [
-
-    {
-    path: '',
-    redirectTo: 'auth/login',
-    pathMatch: 'full',
-  },
-
+export const AUTH_ROUTES: Routes = [
   {
-    path: 'auth',
-    loadChildren: () =>
-      import('./authentication/auth.routes').then(
-        m => m.AUTH_ROUTES
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then(
+        m => m.LoginComponent
       ),
   },
 
-  // página 404 (opcional)
   {
-    path: '**',
-    redirectTo: 'auth/login',
+    path: 'register',
+    loadComponent: () =>
+      import('./register/register.component').then(
+        m => m.RegisterComponent
+      ),
   },
 
+
+
+  // redirect si solo pone /auth
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
 ];
